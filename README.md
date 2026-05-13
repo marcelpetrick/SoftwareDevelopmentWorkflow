@@ -2,113 +2,173 @@
 
 This document is a guideline for developers and stakeholders for frictionless and efficient work.
 
-## Workflow Model
+Below is a cleaned-up and structured version of your workflow description.
 
-The development workflow is agile. It follows selected principles from Kanban and Scrum, but it is not a strict Kanban or Scrum process because some ceremonies are intentionally missing.
+---
 
-The workflow should allow continuous work while still providing predictability.
+# Development Workflow
 
-## Milestones and Sprints
+The development workflow is agile and combines selected principles from **Kanban** and **Scrum**, without strictly following either framework. Since some Scrum ceremonies are intentionally omitted, the process should be understood as a **lightweight agile workflow** that supports both continuous delivery and a certain degree of planning predictability.
 
-Work is clustered into milestones. The terms milestone and sprint are used interchangeably.
+The workflow is organized around **milestones**, which may also be referred to as **sprints**. In this context, both terms are used interchangeably. A milestone is a **time-based planning container**, typically lasting either **two weeks** for shorter iteration cycles or **four weeks** for larger planning intervals.
 
-A milestone is a temporal container. A useful milestone duration is usually either:
+## Milestones and Functional Scope
 
-- 14 days for short iteration cycles.
-- 4 weeks for longer iteration cycles.
+Milestones should group work by functional or feature-related topics wherever possible. This means that issues belonging to the same functional area should ideally be planned and implemented within the same milestone. This helps the development team focus on coherent topics and makes planning, testing, and delivery more predictable.
 
-Milestones should be organized under a functional topic. Work that belongs together from a functional or feature perspective should be handled by the development team within the same milestone or sprint.
+At the end of each milestone, there should usually be a tangible delivery, preferably in the form of a **release**. The release should contain the completed artifacts resulting from the issues implemented during the milestone.
 
-## Issues and Tickets
+## Issues and Requirements
 
-Milestones contain issues, also called tickets.
+Work is tracked through **issues**, also referred to as **tickets**. Issues collect requirements from stakeholders, the project team, or internal technical needs. They may describe implementation work, bug fixes, documentation tasks, research tasks, procurement activities, or other necessary project work.
 
-Issues collect requirements from stakeholders or from inside the team. These requirements must be implemented or completed in another suitable way. An issue can also describe non-development work, such as acquiring required items.
+Each issue should contain a clear description of what is expected. Particular attention should be paid to **requirements engineering**. The goal is that stakeholders, project managers, and developers invest enough effort upfront to make each issue understandable and actionable.
 
-When the work in an issue is done, the resulting artifacts can be released.
+Every issue should include:
 
-## Requirements and Acceptance Criteria
+* A clear description of the requirement
+* The expected outcome
+* Acceptance criteria
+* Relevant technical or functional constraints
+* Dependencies or blockers, if known
+* A three-point estimate
 
-Everyone should put sufficient effort into requirements engineering and writing down what is expected.
-
-Each issue should clearly describe:
-
-- What needs to be done.
-- What the acceptance criteria are.
-- What the developer needs to know before implementation.
-
-Acceptance criteria should be written before implementation starts. This keeps testing simple because the expected result is already defined.
-
-Requirements should be groomed before implementation. Grooming means checking whether they are understandable and free of contradictions.
+The acceptance criteria are especially important because they define when an issue can be considered done and provide the basis for testing.
 
 ## Issue Size
 
-Issues should be scoped so that they contain no more than one day of work whenever possible.
+Issues should be cut as small as reasonably possible. Ideally, one issue should contain **no more than one working day of effort**.
 
-For simplification, it can be necessary to first write down larger topics. These should then be broken down into sub-tickets.
+For practical reasons, larger requirements may initially be written down as broader issues. However, these should later be broken down into smaller sub-tickets before implementation starts. This improves transparency, makes progress easier to track, and reduces planning risk.
 
 ## Estimation
 
-Work should be estimated using three-point estimation in person-hours:
+Each issue should be estimated using a **three-point estimation** in person-hours:
 
-- Best case.
-- Expected case.
-- Worst case.
+* Best case
+* Expected case
+* Worst case
 
-When possible, estimation should be done by the team so that the result is not only a specialist estimation.
+Whenever possible, estimation should be done by the team rather than by a single specialist. This helps avoid overly narrow specialist estimates and improves shared understanding within the team.
 
-The expected case is used by developers as the timebox for implementation.
+The **expected-case estimate** is used as the implementation timebox. Developers should treat this value as the planned amount of effort for completing the issue.
 
-## Time Logging and Predictability
+If it becomes clear during implementation that the estimate is no longer realistic, the developer should inform the project manager and relevant stakeholders **before** the timebox is exceeded. Estimation changes are acceptable when unforeseen circumstances arise or when assumptions turn out to be wrong, but they must be communicated early. The estimate should be adjusted before the issue has already overrun significantly.
+
+## Time Tracking
 
 Developers should log their time in GitLab on a daily basis.
 
-When developers get close to the expected-case timebox, they should inform the stakeholders and project manager before the timebox is exceeded.
+Daily time tracking is necessary for transparency and predictability. Without regular time logging, it becomes difficult to understand actual effort, forecast delivery dates, identify risks, or improve future estimates.
 
-This is necessary for planning. It is understandable that estimations sometimes need to be increased because of unforeseen circumstances or because something was not checked before. However, this should happen before the timebox is broken, not after.
+If a developer approaches the expected-case estimate of an issue, they should proactively notify the project manager and stakeholders. This allows the team to react early, reassess the scope, adjust the estimate, or clarify blockers.
 
-If time is not logged daily, predictability is lost.
+## Daily Progress Notes
 
-## Ticket Updates
+For longer-running issues, developers should update the ticket before leaving work. A short comment of one or two sentences is sufficient.
 
-If something runs longer, developers should take time before leaving the workplace to add a short note to the ticket.
+The update should describe:
 
-The note should describe in one or two sentences:
+* What was tried or implemented
+* What is still open or blocking progress
+* What the developer plans to do next
 
-- What was tried.
-- What is still blocking.
-- What is planned next.
+This makes the current state of work visible to everyone involved in the project. It reduces the need for direct status requests and improves transparency.
 
-This makes the project status clearly and transparently visible inside the ticket instead of requiring people to ask someone directly.
+## Requirement Grooming
 
-## Implementation and Testing Flow
+Incoming requirements should be groomed before they are planned for implementation. Grooming means checking whether the issue is understandable, complete, and free of contradictions.
 
-The development flow is:
+The English word for **“Widersprüche”** in this context is usually **“contradictions”** or **“inconsistencies”**.
 
-1. Requirements come in.
-2. Requirements are groomed.
-3. Estimation is done.
-4. Implementation happens.
-5. Testing is done against the acceptance criteria.
-6. The CI pipeline runs successfully.
-7. Code review is done until everyone approves that the change fits.
-8. The change is merged.
+During grooming, the team should check whether:
 
-## Releases
+* The requirement is understandable
+* The expected result is clear
+* Acceptance criteria are defined
+* There are no contradictions or inconsistencies
+* Dependencies are known
+* The issue is small enough to be implemented
+* The issue can be estimated
 
-At the end of a milestone, there should be a delivery, usually through a release.
+Only groomed and sufficiently clear issues should enter implementation.
 
-For releases, a continuous integration pipeline should be used. The pipeline should put the artifact on a release page.
+## Implementation Workflow
 
-The release should be announced to stakeholders because not everyone is aware of how to use GitLab or where to find release artifacts.
+A typical issue should pass through the following workflow:
 
-## Continuous Integration and Quality
+1. Requirement is created
+2. Requirement is groomed
+3. Issue is estimated
+4. Issue is planned into a milestone
+5. Implementation starts
+6. Developer logs time daily
+7. Developer updates the issue when progress or blockers occur
+8. Acceptance criteria are tested
+9. CI pipeline runs successfully
+10. Code review is performed
+11. Required approvals are given
+12. Changes are merged
+13. Artifact is released
 
-The continuous integration pipeline should include:
+## Testing and Acceptance
 
-- Linters.
-- Static code analyzers.
-- Documentation generation.
-- Intermediate artifacts.
+Testing should be straightforward because acceptance criteria are defined before implementation starts. The acceptance criteria should describe what needs to be verified before the issue can be considered done.
 
-It is better to check more things than too few. Once a large software system has accumulated quality issues, it is hard to remove them later.
+An issue should only be completed when:
+
+* The implementation satisfies the acceptance criteria
+* Necessary tests have been performed
+* The CI pipeline has passed
+* Code review has been completed
+* Required approvals have been given
+
+## Code Review and Merge
+
+Code review is mandatory before merging. The merge should only happen once the reviewers agree that the implementation is correct, maintainable, and aligned with the issue requirements.
+
+Review should cover:
+
+* Functional correctness
+* Code quality
+* Maintainability
+* Test coverage where applicable
+* Compliance with project conventions
+* Documentation impact
+
+## Continuous Integration and Releases
+
+A continuous integration pipeline should be used for every relevant change. The pipeline should verify the quality of the software and produce the required artifacts.
+
+The CI pipeline should include, where applicable:
+
+* Build steps
+* Automated tests
+* Linters
+* Static code analysis
+* Documentation generation
+* Packaging or artifact generation
+* Release artifact publishing
+
+It is better to check more quality aspects early than too few. Once a large amount of software has accumulated, it becomes much harder to remove structural quality issues later.
+
+At the end of a milestone, the CI pipeline should publish the release artifacts to a release page or another defined delivery location.
+
+## Stakeholder Communication
+
+Releases should be announced to stakeholders. This is important because not every stakeholder actively follows GitLab or knows where to find release artifacts.
+
+A release announcement should briefly explain:
+
+* What has been released
+* Which milestone or functional topic it belongs to
+* Where the artifact can be found
+* Any relevant notes, limitations, or follow-up work
+
+This ensures that completed work is visible and usable outside the development team.
+
+## Summary
+
+The goal of this workflow is to combine continuous development with predictable milestone-based planning. Requirements should be clarified before implementation, issues should be small and estimable, developers should log time daily, and progress should be transparent directly inside GitLab.
+
+By combining clear requirements, short feedback cycles, timeboxed implementation, code review, CI checks, and regular releases, the team can improve delivery reliability while maintaining software quality.
