@@ -79,8 +79,6 @@ This makes the current state of work visible to everyone involved in the project
 
 Incoming requirements should be groomed before they are planned for implementation. Grooming means checking whether the issue is understandable, complete, and free of contradictions.
 
-The English word for **“Widersprüche”** in this context is usually **“contradictions”** or **“inconsistencies”**.
-
 During grooming, the team should check whether:
 
 * The requirement is understandable
